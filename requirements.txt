@@ -1,0 +1,20 @@
+
+numpy
+scipy
+cython
+matplotlib
+scikit-image
+tensorflow==1.15 
+keras >=2.0.8
+opencv-python
+h5py
+imgaug
+IPython[all]
+Werkzeug
+numpy
+Jinja2
+gevent
+sanic
+Pillow==6.2.2
+opencv-contrib-python
+pydicom
