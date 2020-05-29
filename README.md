@@ -4,8 +4,10 @@
 #### $conda activate rcnn
 #### $pip install -r requirements.txt
 #### $python setup.py install
+#### $mkdir weights
+#### $cd weights
 #### $wget https://rcnnpneumonia.s3.ca-central-1.amazonaws.com/mask_rcnn_pneumonia_0010.h5
-
+#### $cd ..
 ## To run the APP:
 
 #### $conda activate rcnn
