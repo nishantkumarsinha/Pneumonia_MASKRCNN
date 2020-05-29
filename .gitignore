@@ -2,7 +2,7 @@ model/model.h5
 data/*
 .vscode/settings.json
 uploads/*
-
+weights/*
 # Data files and directories common in repo root
 datasets/
 logs/
