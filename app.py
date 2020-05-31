@@ -150,12 +150,53 @@ def predict(request, model):
     print("********************************image is resized!! *****************************")
     results = model.detect([resized_image])
     r = results[0]
-    for bbox in r['rois']: 
-        x1 = int(bbox[1] * resize_factor)
-        y1 = int(bbox[0] * resize_factor)
-        x2 = int(bbox[3] * resize_factor)
-        y2 = int(bbox[2]  * resize_factor)
+    # font 
+    font = cv2.FONT_HERSHEY_SIMPLEX 
+    
+    # org 
+    org = (50, 50) 
+    
+    # fontScale 
+    fontScale = 1
+    
+  
+    color = (51,255, 51)
+    mask_color = (102,178,255)
+
+    # Line thickness of 2 px 
+    thickness = 2
+
+    mask_color = (102,178,255)
+    # Line thickness of 2 px 
+    thickness = 2
+    
+    for i in range(len(r['rois'])):
+        print(image.shape)
+        mask = r["masks"][:, :, i]
+
+        image = visualize.apply_mask(resized_image, mask, color =mask_color, alpha=0.0008)
+    
+    image = cv2.resize(image, (1024,1024), cv2.INTER_LINEAR)
+
+    for i in range(len(r['rois'])): 
+
+        x1 = int(r['rois'][i][1] * resize_factor)
+        y1 = int(r['rois'][i][0] * resize_factor)
+        x2 = int(r['rois'][i][3] * resize_factor)
+        y2 = int(r['rois'][i][2]  * resize_factor)
         cv2.rectangle(image, (x1,y1), (x2,y2), (77, 255, 9), 3, 1)
+        
+        x_ = x1
+        y_ = y1-40
+        x_1 = x1
+        y_1= y1-80
+        cv2.putText(image, 'Detected Pneumonia', (x_, y_), cv2.FONT_HERSHEY_SIMPLEX,
+        fontScale, color, thickness, cv2.LINE_AA)
+        
+        cv2.putText(image, 'confidence = {:.2f}'.format(r['scores'][i]), (x_1, y_1), cv2.FONT_HERSHEY_SIMPLEX,
+        fontScale, color, thickness, cv2.LINE_AA)
+
+        print(r['scores'][i])
         width = x2 - x1 
         height = y2 - y1 
   
