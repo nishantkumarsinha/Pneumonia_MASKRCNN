@@ -67,16 +67,17 @@ class DetectorConfig(Config):
     
     NUM_CLASSES = 2  # background + 1 pneumonia classes
     
-    IMAGE_MIN_DIM = 256
-    IMAGE_MAX_DIM = 256
-    RPN_ANCHOR_SCALES = (16, 32, 64, 128)
-    TRAIN_ROIS_PER_IMAGE = 32
-    MAX_GT_INSTANCES = 4
-    DETECTION_MAX_INSTANCES = 3
-    DETECTION_MIN_CONFIDENCE = 0.78  ## match target distribution
-    DETECTION_NMS_THRESHOLD = 0.01
 
+    IMAGE_MIN_DIM = 512
+    IMAGE_MAX_DIM = 512
+    RPN_ANCHOR_SCALES = (32, 64, 128, 256)
+    TRAIN_ROIS_PER_IMAGE = 32
+    MAX_GT_INSTANCES = 5
+    DETECTION_MAX_INSTANCES = 3
+    DETECTION_MIN_CONFIDENCE = 0.4
+    DETECTION_NMS_THRESHOLD = 0.1
     STEPS_PER_EPOCH = 200
+
 
 
 class InferenceConfig(DetectorConfig):
@@ -92,7 +93,7 @@ model = modellib.MaskRCNN(mode='inference',
                         model_dir=ROOT_DIR)
 
 # Load trained weights (fill in path to trained weights here)
-model_path = "weights/mask_rcnn_pneumonia_0010.h5"
+model_path = "weights/mask_rcnn_pneumonia_0027.h5"
 print("Loading weights from ", model_path)
 model.load_weights(model_path, by_name=True)
 print("************MODEL IS LOADED****************")

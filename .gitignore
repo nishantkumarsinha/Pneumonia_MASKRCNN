@@ -3,6 +3,7 @@ data/*
 .vscode/settings.json
 uploads/*
 weights/*
+anim/*
 # Data files and directories common in repo root
 datasets/
 logs/
