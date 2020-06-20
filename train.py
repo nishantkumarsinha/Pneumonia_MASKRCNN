@@ -259,21 +259,6 @@ for k in new_history: history[k] = history[k] + new_history[k]
 epochs = range(1,len(next(iter(history.values())))+1)
 pd.DataFrame(history, index=epochs)
 
-plt.figure(figsize=(17,5))
-plt.subplot(131)
-plt.plot(epochs, history["loss"], label="Train loss")
-plt.plot(epochs, history["val_loss"], label="Valid loss")
-plt.legend()
-plt.subplot(132)
-plt.plot(epochs, history["mrcnn_class_loss"], label="Train class ce")
-plt.plot(epochs, history["val_mrcnn_class_loss"], label="Valid class ce")
-plt.legend()
-plt.subplot(133)
-plt.plot(epochs, history["mrcnn_bbox_loss"], label="Train box loss")
-plt.plot(epochs, history["val_mrcnn_bbox_loss"], label="Valid box loss")
-plt.legend()
-
-plt.show()
 
 best_epoch = np.argmin(history["val_loss"])
 print("Best Epoch:", best_epoch + 1, history["val_loss"][best_epoch])
@@ -290,7 +275,7 @@ model = modellib.MaskRCNN(mode='inference',
                           model_dir=ROOT_DIR)
 
 # Load trained weights (fill in path to trained weights here)
-model_path = "weights/mask_rcnn_pneumonia_0010.h5"
+model_path = "weights/mask_rcnn_pneumonia_0027.h5"
 print("Loading weights from ", model_path)
 model.load_weights(model_path, by_name=True)
 
@@ -370,7 +355,4 @@ def visualize():
     plt.figure() 
     plt.imshow(image, cmap=plt.cm.gist_gray)
 
-visualize()
-visualize()
-visualize()
 visualize()
