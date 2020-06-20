@@ -6,7 +6,7 @@
 #### $python setup.py install
 #### $mkdir weights
 #### $cd weights
-#### $wget https://rcnnpneumonia.s3.ca-central-1.amazonaws.com/mask_rcnn_pneumonia_0010.h5
+#### $wget https://rcnnpneumonia.s3.ca-central-1.amazonaws.com/mask_rcnn_pneumonia_0027.h5
 #### $cd ..
 ## To run the APP:
 
